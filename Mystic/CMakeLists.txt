@@ -4,12 +4,12 @@ set(HEADER_FILES
 	Utilities.h
 	GameWindow.h
 	WindowImplementation.h
-	GLFW/GLFWImplementation.h
+	GLFWCode/GLFWImplementation.h
 )
 
 set(SOURCE_FILES
 	GameWindow.cpp
-	GLFW/GLFWImplementation.cpp
+	GLFWCode/GLFWImplementation.cpp
 )
 
 add_definitions(-DMYS_DEBUG=2)
