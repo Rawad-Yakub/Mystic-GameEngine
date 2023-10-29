@@ -1,13 +1,14 @@
 #pragma once
 
 #include "Utilities.h"
+#include "GameWindow.h"
 
 
 namespace mystic
 {
 
 	template<typename T>
-	class MYSTIC_API MysticApp
+	class MysticApp
 	{
 	public:
 		static void Init();
@@ -22,6 +23,9 @@ namespace mystic
 		MysticApp();
 
 		inline static MysticApp* sInstance{ nullptr };
+
+		GameWindow mWindow;
+
 		bool mShouldContinue{ true };
 	};
 }

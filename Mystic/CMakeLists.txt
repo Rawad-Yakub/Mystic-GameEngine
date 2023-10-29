@@ -2,23 +2,24 @@ set(HEADER_FILES
 	include/Mystic.h
 	MysticApp.h
 	Utilities.h
+	GameWindow.h
+	WindowImplementation.h
+	GLFW/GLFWImplementation.h
 )
 
 set(SOURCE_FILES
-	placeholder.cpp
+	GameWindow.cpp
+	GLFW/GLFWImplementation.cpp
 )
 
 add_definitions(-DMYS_DEBUG=2)
 add_definitions(-DMYSTIC_LIB)
 
-if(WIN32)
-	add_definitions(-DMYSTIC_MSCPP)
-elseif(LINUX)
-	add_definitions(-DMYSTIC_LINUX)
-elseif(APPLE)
-	add_definitions(-DMYSTIC_APPLE)
-endif()
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(../glfw/include)
 
 add_library(Mystic SHARED ${HEADER_FILES} ${SOURCE_FILES})
 
 target_precompile_headers(Mystic PRIVATE pch.h)
+
+target_link_libraries(Mystic glfw)

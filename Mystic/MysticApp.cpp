@@ -24,10 +24,15 @@ namespace mystic
 	template<typename T>
 	void MysticApp<T>::Run()
 	{
+		mWindow.Create("RY Game", 1000, 800);
 
+		 
 		while (mShouldContinue)
 		{
 			OnUpdate();
+
+			mWindow.SwapBuffers();
+			mWindow.PollEvents();
 		}
 	}
 
