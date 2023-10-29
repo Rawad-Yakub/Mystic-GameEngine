@@ -15,7 +15,7 @@ set(SOURCE_FILES
 add_definitions(-DMYS_DEBUG=2)
 add_definitions(-DMYSTIC_LIB)
 
-include_directories(${PROJECT_SOURCE_DIR})
+include_directories(../Mystic)
 include_directories(../glfw/include)
 
 add_library(Mystic SHARED ${HEADER_FILES} ${SOURCE_FILES})
