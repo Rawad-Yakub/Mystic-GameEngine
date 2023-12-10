@@ -2,6 +2,8 @@
 
 #include "Utilities.h"
 #include "GameWindow.h"
+#include "Renderer.h"
+#include "Picture.h"
 
 
 namespace mystic
@@ -18,6 +20,8 @@ namespace mystic
 
 		void Run();
 		virtual void OnUpdate();
+
+		void Draw(int x, int y, Picture& pic);
 
 	private:
 		MysticApp();

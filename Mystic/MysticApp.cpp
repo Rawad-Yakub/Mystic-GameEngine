@@ -1,18 +1,23 @@
-#include "pch.h"
-#include "MysticApp.h"
+//#include "pch.h"
+//#include "MysticApp.h"
 
-#include "../glad/include/glad/glad.h"
-#include "../glfw/include/GLFW/glfw3.h"
+//#include "../glad/include/glad/glad.h"
+//#include "../glfw/include/GLFW/glfw3.h"
 
-#include "../stbi/stb_image.h"
+//#include "../stbi/stb_image.h"
 
 #include "Shader.h"
+#include "Picture.h"
+#include "Renderer.h"
 
 namespace mystic 
 {
 	template<typename T>
 	MysticApp<T>::MysticApp()
 	{
+		mWindow.Create("RY Game", 1000, 800);
+
+		mRenderer.Init();
 	}
 
 	template<typename T>
@@ -31,49 +36,10 @@ namespace mystic
 	template<typename T>
 	void MysticApp<T>::Run()
 	{
-		mWindow.Create("RY Game", 1000, 800);
-
-		if (!gladLoaderGLLoader((GLADloadproc)glfwGetProcAddress))
-		{
-			MYS_ERROR("Failed to initialize GLAD");
-			return;
-		}
-
-		float vertices[] = {
-			-0.5f, -0.5f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 1.0f, 0.0f,
-			-0.5f,  0.5f, 0.0f, 1.0f,
-			 0.5f,  0.5f, 1.0f, 1.0f
-		};
-
-		unsigned int indices[] = {
-			0, 1, 2,
-			1, 2, 3
-		};
-
-		unsigned int VAO;
-		glGenVertexArrays(1, &VAO);
-		glBindVertexArray(VAO);
-
-		unsigned int VBO;
-		glGenBuffers(1, &VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		
-		unsigned int EBO;
-		glGenBuffers(1, &EBO);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
-
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2*sizeof(float)));
-		glEnableVertexAttribArray(1);
+	
 
 		/////////////////SHADERS/////////////////
-		mystic::Shader shader{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };
-		shader.SetUniform2Ints("ScreenSize", 1000, 800);
+
 
 		////////////////TEXTURES/////////////////
 
@@ -86,10 +52,10 @@ namespace mystic
 
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
-		unsigned char* data = stbi_load("../Assets/Pictures/test.png", &width, &height, &nrChannels);
+		unsigned char* data = stbi_load("../Assets/Pictures/test.png", &width, &height, &nrChannels, 0);
 		if (data)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipMap(GL_TEXTURE_2D);
 		}
 		else
@@ -98,20 +64,18 @@ namespace mystic
 		}
 		stbi_image_free(data);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+		mystic::Shader shader{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultVertexShader.glsl" };
 
 		while (mShouldContinue)
 		{
-			OnUpdate();
-
-			glClearColor(0.3f, 0.2f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			mRenderer.Clear();
 
 			shader.Bind();
+			shader.SetUniform2Ints("ScreenSize", mWindow.GetWidth(), mWindow.GetHeight());
 
-			glBindVertexArray(VAO);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			OnUpdate();
 
 			mWindow.SwapBuffers();
 			mWindow.PollEvents();
@@ -121,5 +85,11 @@ namespace mystic
 	template<typename T>
 	void MysticApp<T>::OnUpdate()
 	{
+	}
+
+	template<typename T>
+	void MysticApp<T>::Draw(int x, int y, Picture& pic) 
+	{
+		mRenderer.Draw(100, 200, pic);
 	}
 }
