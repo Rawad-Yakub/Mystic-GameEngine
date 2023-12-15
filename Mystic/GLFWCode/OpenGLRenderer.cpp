@@ -5,6 +5,7 @@
 #include "../glad/include/glad/glad.h"
 #include "../glfw/include/GLFW/glfw3.h"
 
+
 namespace mystic
 {
 	void OpenGLRenderer::Init()
@@ -53,6 +54,8 @@ namespace mystic
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
+
+		//////////////Implement Picuture/////////////
 		pic.Bind();
 
 		glBindVertexArray(VAO);

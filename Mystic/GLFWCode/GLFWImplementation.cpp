@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "GLFWImplementation.h"
 
+#include "GLFW/glfw3.h"
+
 
 namespace mystic
 {
