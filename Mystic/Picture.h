@@ -10,7 +10,7 @@ namespace mystic
 	class MYSTIC_API Picture
 	{
 	public:
-		Picture(const std::string& pic, int width, int height);
+		Picture(const std::string& pic);
 		~Picture();
 		int GetHeight();
 		int GetWidth();
