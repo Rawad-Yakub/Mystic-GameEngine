@@ -1,0 +1,9 @@
+Rules:
+-You can move your character with the arrow keys.
+-You can check your inventory with the "I" button and get rid of it by pressing the "Esc" button.
+-Once you go past the blue tiles on the left side of the first map, you can enter the second map
+and still walk around.
+
+Uniquness:
+- My game has an inventory feature, where you can look at what it is in your inventory and escape out of it.
+- My game lets you go to a second map.

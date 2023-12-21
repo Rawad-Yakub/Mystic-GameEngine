@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Picture.h"
+//#include "Picture.h"
 
 namespace mystic
 {
@@ -8,8 +8,8 @@ namespace mystic
 	{
 	public:
 		virtual void Bind() = 0;
-		virtual int GetHeight() = 0;
-		virtual int GetWidth() = 0;
+		virtual int GetHeight() const = 0;
+		virtual int GetWidth() const = 0;
 
 		virtual ~PictureImplementation() {};
 

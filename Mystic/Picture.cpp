@@ -22,14 +22,14 @@ namespace mystic
 		mImplementation->~PictureImplementation();
 	}
 
-	int Picture::GetHeight()
+	int Picture::GetHeight() const
 	{
-		mImplementation->GetHeight();
+		return mImplementation->GetHeight();
 	}
 
-	int Picture::GetWidth()
+	int Picture::GetWidth() const
 	{
-		mImplementation->GetWidth();
+		return mImplementation->GetWidth();
 	}
 
 	void Picture::Bind()

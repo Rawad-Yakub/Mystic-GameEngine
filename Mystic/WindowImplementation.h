@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pch.h"
+#include "Events.h"
 
 namespace mystic
 {
@@ -12,6 +13,10 @@ namespace mystic
 		virtual int GetWidth() const = 0;
 		virtual void SwapBuffers() = 0;
 		virtual void PollEvents() = 0;
+
+		virtual void SetKeyPressedCallBack(std::function<void(const KeyPressed&)> callbackfunc) = 0;
+		virtual void SetKeyReleasedCallBack(std::function<void(const KeyReleased&)> callbackfunc) = 0;
+		virtual void SetWindowCloseCallBack(std::function<void()> callbackfunc) = 0;
 
 		virtual ~WindowImplementation() {};
 

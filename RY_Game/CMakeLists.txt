@@ -1,8 +1,10 @@
 set(HEADER_FILES
+	Game.h
 )
 
 set(SOURCE_FILES
 	main.cpp
+	Game.cpp
 )
 
 add_executable(RY_Game ${HEADER_FILES} ${SOURCE_FILES})
