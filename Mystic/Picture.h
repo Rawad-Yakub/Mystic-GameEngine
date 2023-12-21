@@ -12,14 +12,14 @@ namespace mystic
 	public:
 		Picture(const std::string& pic);
 		~Picture();
-		int GetHeight();
-		int GetWidth();
+		int GetHeight() const;
+		int GetWidth() const;
 		void Bind();
 
 	private:
 		std::unique_ptr<PictureImplementation> mImplementation;
-		int height;
-		int width;
+		//int height;
+		//int width;
 
 	};
 }

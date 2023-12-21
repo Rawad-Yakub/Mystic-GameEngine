@@ -13,8 +13,8 @@ namespace mystic
 		~OpenGLPicture();
 
 		virtual void Bind() override;
-		virtual int GetHeight() override;
-		virtual int GetWidth() override;
+		virtual int GetHeight() const override;
+		virtual int GetWidth() const override;
 
 	private:
 		unsigned int mTexture;

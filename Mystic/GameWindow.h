@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "Utilities.h"
 #include "WindowImplementation.h"
+#include "Events.h"
 
 namespace mystic {
 	
@@ -15,6 +16,10 @@ namespace mystic {
 		int GetWidth() const;
 		void SwapBuffers();
 		void PollEvents();
+
+		void SetKeyPressedCallBack(std::function<void(const KeyPressed&)> callbackfunc);
+		void SetKeyReleasedCallBack(std::function<void(const KeyReleased&)> callbackfunc);
+		void SetWindowCloseCallBack(std::function<void()> callbackfunc);
 
 	private:
 		std::unique_ptr<WindowImplementation> mImplementation{ nullptr };

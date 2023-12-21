@@ -45,4 +45,20 @@ namespace mystic
 	{
 		mImplementation->PollEvents();
 	}
+
+	void GameWindow::SetKeyPressedCallBack(std::function<void(const KeyPressed&)> callbackfunc)
+	{
+		mImplementation->SetKeyPressedCallBack(callbackfunc);
+	}
+
+	void GameWindow::SetKeyReleasedCallBack(std::function<void(const KeyReleased&)> callbackfunc)
+	{
+		mImplementation->SetKeyReleasedCallBack(callbackfunc);
+	}
+
+	void GameWindow::SetWindowCloseCallBack(std::function<void()> callbackfunc)
+	{
+		mImplementation->SetWindowCloseCallBack(callbackfunc);
+	}
+
 }

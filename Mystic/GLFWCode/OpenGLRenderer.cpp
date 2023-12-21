@@ -10,7 +10,7 @@ namespace mystic
 {
 	void OpenGLRenderer::Init()
 	{
-		if (!gladLoaderGLLoader((GLADloadproc)glfwGetProcAddress))
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
 			MYS_ERROR("Failed to initialize GLAD");
 			return;
@@ -68,7 +68,7 @@ namespace mystic
 
 	void OpenGLRenderer::Clear()
 	{
-		glClearColor(0.3f, 0.2f, 0.1f, 1.0f);
+		glClearColor(0.4f, 0.3f, 0.43f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 }
